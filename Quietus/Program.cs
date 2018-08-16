@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -25,33 +26,16 @@ namespace Quietus
             return lastPublishDate != missingDate ? lastPublishDate : null;
         }
 
-        static void Main(string[] args)
+        public static WebClient GetWebClient()
         {
-            // samsung 403 forbidden
-            // no lastUpdatedTime
-            // uses publishDate
-            // String url = "http://news.samsung.com/global/feed";
-
-            // walmart 
-            // no lastUpdatedTime
-            // uses publishDate
-            // String url = "https://corporate.walmart.com/rss?feedName=allnews";
-
-            // apple
-            // no publishDate
-            // uses lastUpdatedTime
-            String url = "https://www.apple.com/newsroom/rss-feed.rss";
-
-            // oracle no lastUpdatedTime provided
-            // String url = "https://www.oracle.com/corporate/press/rss/rss-pr.xml";
-
-            // microsoft investor relations
-            // System.Xml.XmlException: 'For security reasons DTD is prohibited in this XML document. To enable DTD processing set the DtdProcessing property on XmlReaderSettings to Parse and pass the settings into XmlReader.Create method.'
-            // String url = "https://www.microsoft.com/en-us/Investor/rss.aspx";
-
-
             WebClient webClient = new WebClient();
             webClient.Headers.Add("user-agent", "Quietus/1.0");
+            return webClient;
+        }
+
+        public static SyndicationItem GetMostRecentItem(string url)
+        {
+            WebClient webClient = GetWebClient();
 
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.DtdProcessing = DtdProcessing.Parse;
@@ -62,15 +46,46 @@ namespace Quietus
             reader.Close();
 
             SyndicationItem mostRecentItem = feed.Items.First();
-            DateTimeOffset? publishDate = GetLastPublishDate(mostRecentItem);
+            return mostRecentItem;
+        }
 
-            if (publishDate.HasValue)
+        public static Dictionary<string, string> GetCompanyFeedMap(string filePath)
+        {
+            Dictionary<string, string> companyFeedMap = new Dictionary<string, string>();
+            using (StreamReader streamReader = new StreamReader(filePath))
             {
-                int daysOld = GetDaysOfInactivity(publishDate.Value);
-                Console.WriteLine("publish: " + publishDate.ToString() + " (" + daysOld + " days old)");
+                string line;
+
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    string[] pieces = line.Split(' ');
+                    companyFeedMap.Add(pieces[0], pieces[1]);
+                }
+            }
+            return companyFeedMap;
+        }
+
+        static void Main(string[] args)
+        {
+
+            foreach (KeyValuePair<string, string> keyValue in GetCompanyFeedMap("C:/Users/akay/Documents/company_feeds.txt"))
+            {
+                string company = keyValue.Key;
+                string feedUrl = keyValue.Value;
+
+                Console.WriteLine(company + ":");
+
+                SyndicationItem mostRecentItem = GetMostRecentItem(feedUrl);
+                DateTimeOffset? publishDate = GetLastPublishDate(mostRecentItem);
+
+                if (publishDate.HasValue)
+                {
+                    int daysOld = GetDaysOfInactivity(publishDate.Value);
+                    Console.WriteLine("publish: " + publishDate.ToString() + " (" + daysOld + " days old)");
+                }
+
             }
 
-            Console.WriteLine("Hello World!");
             Console.ReadLine();
         }
     }
