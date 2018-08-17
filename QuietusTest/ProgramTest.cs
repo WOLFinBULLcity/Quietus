@@ -106,7 +106,7 @@ namespace QuietusTest
         [TestMethod]
         public void TestGetCompanies()
         {
-            List<string> expectedCompanyInfo = new List<string>(new string[] 
+            List<string> expectedCompanyInfo = new List<string>(new string[]
             {
                 "TestCompany1, http://test.company1.feed.rss",
                 "TestCompany2, http://test.company2.feed.rss",
@@ -117,7 +117,7 @@ namespace QuietusTest
 
             var safeBasePath = System.Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             var fullPath = Path.Combine(safeBasePath, "Quietus");
-            
+
             Directory.CreateDirectory(fullPath);
 
             string testFile = fullPath + "/test_companies.txt";

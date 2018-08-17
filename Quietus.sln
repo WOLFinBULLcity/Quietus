@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quietus", "Quietus\Quietus.csproj", "{CDCA3144-18B0-4C82-9AE2-0E7EFFF341F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuietusTest", "UnitTestProject1\QuietusTest.csproj", "{9DD6205F-ED4C-493B-B367-3A9595EB1E60}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuietusTest", "QuietusTest\QuietusTest.csproj", "{CD817938-80A2-4F4C-BC30-87D1A6B110A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{CDCA3144-18B0-4C82-9AE2-0E7EFFF341F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDCA3144-18B0-4C82-9AE2-0E7EFFF341F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDCA3144-18B0-4C82-9AE2-0E7EFFF341F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DD6205F-ED4C-493B-B367-3A9595EB1E60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DD6205F-ED4C-493B-B367-3A9595EB1E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DD6205F-ED4C-493B-B367-3A9595EB1E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DD6205F-ED4C-493B-B367-3A9595EB1E60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD817938-80A2-4F4C-BC30-87D1A6B110A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD817938-80A2-4F4C-BC30-87D1A6B110A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD817938-80A2-4F4C-BC30-87D1A6B110A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD817938-80A2-4F4C-BC30-87D1A6B110A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
