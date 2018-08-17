@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Quietus
 {
-    class Company
+    public class Company
     {
         public string Name { get; set; }
         public string RssFeedUrl { get; set; }
