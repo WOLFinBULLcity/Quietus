@@ -1,0 +1,20 @@
+Walmart, https://corporate.walmart.com/rss?feedName=allnews
+Apple, https://www.apple.com/newsroom/rss-feed.rss
+Samsung, https://news.samsung.com/global/feed
+Microsoft, https://news.microsoft.com/feed/
+Oracle, http://investor.oracle.com/rss/pressrelease.aspx
+Mckesson, https://www.mckesson.com/rss.aspx
+Verizon, https://www.verizon.com/about/news/Verizon-news.xml
+Boeing, http://boeing.mediaroom.com/news-releases-statements?pagetemplate=rss
+Comcast, https://www.cmcsa.com/rss/news-releases.xml?items=15
+Tesla, http://ir.tesla.com/rss/news-releases.xml
+NVIDIA, https://nvidianews.nvidia.com/releases.xml
+Alcoa, https://news.alcoa.com/feeds/press_release/all/rss.xml
+General Motors, https://media.gm.com/media/us/en/gm/home/jcr:content/righttabsocialmedia/rss.newsrss.html
+McDonalds, http://news.mcdonalds.com/rss/news-releases.xml
+Walgreens, https://news.walgreens.com/press-releases/rss.xml
+Publix, http://corporate.publix.com/news-rss
+Sony, https://www.sony.net/SonyInfo/News/Press/data/pressrelease_for_top.xml
+Panasonic, https://news.panasonic.com/global/rss/all/index.xml
+Dell, https://investors.delltechnologies.com/rss/news-releases.xml
+ESPN, http://www.espn.com/espn/rss/news

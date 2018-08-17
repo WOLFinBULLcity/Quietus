@@ -94,9 +94,14 @@ namespace Quietus
                     }
                 }
             }
-            catch (Exception)
+            catch (WebException)
             {
-
+                Console.WriteLine("There was a problem accessing an RSS feed url. Check your urls and try again.");
+                throw;
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("RSS feed url was null or missing. Check your input file and try again.");
                 throw;
             }
         }
@@ -133,7 +138,7 @@ namespace Quietus
             }
             catch (Exception)
             {
-
+                Console.WriteLine("Error reading from file. Double check your file path and try again.");
                 throw;
             }
         }
@@ -171,11 +176,14 @@ namespace Quietus
                     }
                 }
                 return inactiveCompanies;
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                if (!(ex is WebException))
+                {
+                    // Error message for WebException should be covered by GetFeedFromUrl.
+                    Console.WriteLine("Encountered fatal error while attempting to access RSS feed data.");
+                }
                 throw;
             }
         }
@@ -202,6 +210,8 @@ namespace Quietus
 
         static void Main(string[] args)
         {
+            // We attempt to pull the file path and inactivity period directly from command line arguments
+            // If no arguments are provided via command line, the user will be prompted for them one at a time.
             string filePath;
             int inactivityPeriod;
 
@@ -228,15 +238,17 @@ namespace Quietus
 
             try
             {
+                // Read the file and generate a List of Company objects from the company/rss tuples.
                 List<Company> allCompanies = GetCompanies(filePath);
+
+                // Scan the Company feeds for inactivity and return inactive Companies.
                 List<Company> inactiveCompanies = GetInactiveCompanies(allCompanies, inactivityPeriod);
+
+                // Create a report of inactive companies.
                 string report = GetInactivityReport(inactiveCompanies);
 
+                // Print the inactivity report to the console window.
                 Console.WriteLine(report);
-
-                Console.WriteLine("Press any key to exit...");
-                Console.ReadLine();
-
             }
             catch (Exception)
             {
